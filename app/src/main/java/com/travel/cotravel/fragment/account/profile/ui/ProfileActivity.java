@@ -210,7 +210,7 @@ public class ProfileActivity extends BaseActivity {
     protected void initAdmob() {
         MobileAds.initialize(this, getString(R.string.app_id));
         mAdmobView = (AdView) findViewById(R.id.profile_admob);
-        //if (ENABLE_ADMOB) {
+
 
             AdRequest.Builder builder = new AdRequest.Builder();
             AdRequest adRequest = builder.build();
@@ -228,10 +228,7 @@ public class ProfileActivity extends BaseActivity {
             }
         });
 
-          //  mAdmobView.setVisibility(View.VISIBLE);
-        //} else {
-        //    mAdmobView.setVisibility(View.GONE);
-      //  }
+
     }
 
     private void setDataToProfile() {
