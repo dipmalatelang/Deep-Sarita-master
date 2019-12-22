@@ -18,6 +18,10 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.travel.cotravel.BaseFragment;
 import com.travel.cotravel.R;
 import com.travel.cotravel.fragment.chat.module.Chatlist;
@@ -60,6 +64,7 @@ public class ChatFragment extends BaseFragment {
     FirebaseUser fuser;
     ProgressBar progressBar;
     FloatingActionButton floatingActionButton;
+    AdView mAdmobView;
 
 
 
@@ -74,6 +79,7 @@ public class ChatFragment extends BaseFragment {
         search_users=view.findViewById(R.id.search_users);
         progressBar=view.findViewById(R.id.progressBar);
         txtNoData=view.findViewById(R.id.txtNoData);
+        mAdmobView = view.findViewById(R.id.chat_admob);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -135,8 +141,35 @@ public class ChatFragment extends BaseFragment {
 
             }
         });
+        initAdmob();
+
 
         return view;
+
+    }
+
+    protected void initAdmob() {
+        MobileAds.initialize(getContext(), getString(R.string.app_id));
+
+
+
+        AdRequest.Builder builder = new AdRequest.Builder();
+        AdRequest adRequest = builder.build();
+        // Start loading the ad in the background.
+        mAdmobView.loadAd(adRequest);
+        mAdmobView.setAdListener(new AdListener(){
+            @Override
+            public void onAdLoaded() {
+                mAdmobView.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                mAdmobView.setVisibility(View.GONE);
+            }
+        });
+
+
     }
 
     private void searchUsers(String s)

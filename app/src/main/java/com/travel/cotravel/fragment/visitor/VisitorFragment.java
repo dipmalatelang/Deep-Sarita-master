@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.ads.AdListener;
 import com.travel.cotravel.BaseFragment;
 import com.travel.cotravel.R;
 import com.travel.cotravel.fragment.account.profile.ui.ProfileActivity;
@@ -80,19 +81,27 @@ public class VisitorFragment extends BaseFragment {
     }
     protected void initAdmob() {
         MobileAds.initialize(getContext(), getString(R.string.app_id));
+        mAdmobView = (AdView)view.findViewById(R.id.visitor_admob);
 
-        if (ENABLE_ADMOB) {
 
-            AdRequest.Builder builder = new AdRequest.Builder();
-            AdRequest adRequest = builder.build();
-            // Start loading the ad in the background.
-            mAdmobView.loadAd(adRequest);
-            mAdmobView.setVisibility(View.VISIBLE);
-        } else {
-            mAdmobView.setVisibility(View.GONE);
-        }
+        AdRequest.Builder builder = new AdRequest.Builder();
+        AdRequest adRequest = builder.build();
+        // Start loading the ad in the background.
+        mAdmobView.loadAd(adRequest);
+        mAdmobView.setAdListener(new AdListener(){
+            @Override
+            public void onAdLoaded() {
+                mAdmobView.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                mAdmobView.setVisibility(View.GONE);
+            }
+        });
+
+
     }
-
 
 
 

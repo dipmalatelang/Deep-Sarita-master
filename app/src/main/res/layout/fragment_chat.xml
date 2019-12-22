@@ -21,15 +21,7 @@
         tools:layout_editor_absoluteX="5dp" />
 
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="none"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_users">
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
@@ -37,9 +29,11 @@
             android:layout_height="0dp"
             android:layout_margin="5dp"
             android:orientation="vertical"
+            android:scrollbars="vertical"
+            app:layout_constraintBottom_toTopOf="@id/chat_admob"
             app:layout_constraintTop_toBottomOf="@+id/search_users" />
 
-    </ScrollView>
+
 
     <TextView
         android:id="@+id/txtNoData"
@@ -78,5 +72,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:pressedTranslationZ="12dp" />
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/chat_admob"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_weight="0"
+        android:visibility="gone"
+        app:adSize="SMART_BANNER"
+        app:adUnitId="@string/admob_id"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

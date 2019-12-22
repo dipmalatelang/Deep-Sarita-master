@@ -51,7 +51,7 @@ public class MembersActivity extends BaseActivity {
     int ageTo, ageFrom;
     final FirebaseUser fuser = FirebaseAuth.getInstance().getCurrentUser();
     String fusername;
-    private boolean listviewer;
+    static boolean listviewer;
 
     @Override
     protected void onStop() {
@@ -213,9 +213,11 @@ public class MembersActivity extends BaseActivity {
     }
     private void switchLayout() {
         if (mGridLayoutManager.getSpanCount() == SPAN_COUNT_ONE) {
-            listviewer =true;
+            listviewer = true;
             mGridLayoutManager.setSpanCount(SPAN_COUNT_THREE);
+
         } else {
+            listviewer = false;
             mGridLayoutManager.setSpanCount(SPAN_COUNT_ONE);
         }
         membersAdapter.notifyItemRangeChanged(0, membersAdapter.getItemCount());

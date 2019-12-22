@@ -40,6 +40,7 @@
         android:layout_marginTop="8dp"
         android:scrollbars="vertical"
         android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/visitor_admob"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -64,7 +65,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.gms.ads.AdView
-        android:id="@+id/home_admob"
+        android:id="@+id/visitor_admob"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_weight="0"
